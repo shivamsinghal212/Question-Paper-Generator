@@ -35,7 +35,7 @@ def verify(request):
             query = Student.objects.filter(user=user).get().is_student
             if user.is_superuser:
                 return redirect('admin_home')
-            elif query is True and user.is_staff is True:
+            elif query is False and user.is_staff is True:
                 return redirect('teacher_home')
             elif query is True:
                 return redirect('student_home')
