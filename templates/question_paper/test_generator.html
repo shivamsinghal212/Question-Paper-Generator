@@ -1,10 +1,53 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block content %}
+    <style>
+        .input-group-text {
+            color: #ffffff;
+            background-color: #444444;
+        }
+    </style>
+    <br>
+    <br>
+    <form method="post">{% csrf_token %}
+
+        <div class="row">
+            <div class="col">
+                <div class="jumbotron">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <label class="input-group-text" for="inputGroupSelect01">Class:</label>
+                                </div>
+                                <select class="custom-select" id="inputGroupSelect01">
+                                    <option selected>Select class</option>
+                                    {% for k,v in classes %}
+                                    <option value="{{ v }}">{{ k }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <label class="input-group-text" for="inputGroupSelect02">Subject:</label>
+                                </div>
+                                <select class="custom-select" id="inputGroupSelect02">
+                                    <option selected>Select subject</option>
+                                    {% for k,v in subjects %}
+                                    <option value="{{ v }}">{{ k }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="submit" class="btn btn-dark">Submit</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </form>
+{% endblock content %}

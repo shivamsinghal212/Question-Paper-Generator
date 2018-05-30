@@ -17,6 +17,7 @@ def RegisterStudent(request):
             student.student.gender = form.cleaned_data.get('gender')
             student.student.dob = form.cleaned_data.get('dob')
             student.student.phone = form.cleaned_data.get('phone')
+            student.student.is_student = True
             student.save()
             return redirect('login')
     else:
@@ -31,16 +32,19 @@ def verify(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
+            query = Student.objects.filter(user=user).get().is_student
             if user.is_superuser:
                 return redirect('admin_home')
-            elif Student.objects.filter(user=user).get().is_student is True and user.is_staff is False:
-                return redirect('student_home')
-            elif user.is_superuser is False and user.is_staff is True:
+            elif query is True and user.is_staff is True:
                 return redirect('teacher_home')
+            elif query is True:
+                return redirect('student_home')
+            else:
+                return redirect('login')
         else:
-            return render(request,'registration\login.html',{'username':username, 'message':'Incorrect password'})
+            return render(request,'registration/login.html',{'username':username, 'message':'Incorrect Username/Password'})
     else:
-        return render(request,'registration\login.html', {'': ''})
+        return render(request,'registration/login.html', {'': ''})
 
 
 @login_required(login_url='login')
@@ -83,3 +87,11 @@ def paper_new(request):
     else:
         form = QuestionpaperForm()
     return render(request, 'question_paper/paper_new.html',{'form':form})
+
+
+def test_generator(request):
+    subjects = Questions.SUBJECT_LIST
+    klass = Questions.KLASS_LIST
+    context = {'subjects': subjects,
+               'classes': klass}
+    return render(request, 'question_paper/test_generator.html', context=context)
