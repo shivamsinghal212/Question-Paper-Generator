@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <br><h2>Student Registration</h2><br>
+
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <div class="jumbotron">
+                <form method="POST">{% csrf_token %}
+                    {{ form.username.errors }}
+                    {{ form.email.errors }}
+                    {{ form.dob.errors }}
+                    {{ form.password1.errors }}
+                    {{ form.password2.errors }}
+                    {{ form.phone.errors }}
+                    {{ form.school.errors }}
+                    <div class="form-row">
+                        <div class="form-group col-sm-12">
+                            <label for="{{ form.username.id_for_label }}">Username:</label>
+                            {{ form.username }}
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-sm-6">
+                            <label for="{{ form.first_name.id_for_label }}">First Name:</label>
+                            {{ form.first_name }}
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label for="{{ form.first_name.id_for_label }}">Last Name:</label>
+                            {{ form.last_name }}
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-sm-6">
+
+                            <label for="{{ form.email.id_for_label }}">Email:</label>
+                            {{ form.email }}
+                        </div>
+                        <div class="form-group col-sm-6">
+
+                            <label for="{{ form.phone.id_for_label }}">Phone:</label>
+                            {{ form.phone }}
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-sm-6">
+
+                            <label for="{{ form.password1.id_for_label }}">Password:</label>
+                            {{ form.password1 }}
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label for="{{ form.password2.id_for_label }}">Confirm:</label>
+                            {{ form.password2 }}
+                        </div>
+                    </div>
+                    <div>
+
+                        <label for="{{ form.school.id_for_label }}">School:</label>
+                        {{ form.school }}
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-sm-6">
+
+                            <label for="{{ form.dob.id_for_label }}">DOB:</label>
+                            {{ form.dob }}
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label for="{{ form.gender.id_for_label }}">Gender:</label>
+                            <div class="row">
+                                <div class="col-sm-3"></div>
+
+                                {% for radio in form.gender %}
+                                    <div class="col-sm-3">
+                                        {{ radio }}
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <button type="submit" class="btn btn-primary mb-2">Register</button>
+                </form>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+    </div>
+
+{% endblock content %}
