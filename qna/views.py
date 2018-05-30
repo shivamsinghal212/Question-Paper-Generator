@@ -88,10 +88,19 @@ def paper_new(request):
         form = QuestionpaperForm()
     return render(request, 'question_paper/paper_new.html',{'form':form})
 
+def get_question_list(subject, klass):
+    question_l = Questions.objects.filter(subject=subject).filter(klass=klass)
+    return question_l
 
 def test_generator(request):
     subjects = Questions.SUBJECT_LIST
     klass = Questions.KLASS_LIST
+    if request.method == 'POST':
+        subject = request.POST.get('subject')
+        student_klass = request.POST.get('student_class')
+        question_list = get_question_list(subject, student_klass)
+
+
     context = {'subjects': subjects,
                'classes': klass}
     return render(request, 'question_paper/test_generator.html', context=context)

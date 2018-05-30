@@ -31,7 +31,7 @@ def update_user_profile(sender, instance, created, **kwargs):
 
 
 class Questions(models.Model):
-    SUBJECT_LIST = (('Science','Science'),('Mathematics','Mathematics'),('Social-Studies','Social Studies'),
+    SUBJECT_LIST = (('Science','Science'),('Mathematics','Mathematics'),('Social-Studies','Social-Studies'),
                     ('English','English'),('Moral-Science','Moral-Science'))
     KLASS_LIST = (('1st','I'),('2nd','II'),('3rd','III'),('4th','IV'),('5th','V'),('6th','VI'),
                     ('7th','VII'),('8th','VIII'))

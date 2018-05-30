@@ -20,10 +20,10 @@
                                 <div class="input-group-prepend">
                                     <label class="input-group-text" for="inputGroupSelect01">Class:</label>
                                 </div>
-                                <select class="custom-select" id="inputGroupSelect01">
+                                <select name="student_class" class="custom-select" id="inputGroupSelect01">
                                     <option selected>Select class</option>
                                     {% for k,v in classes %}
-                                    <option value="{{ v }}">{{ k }}</option>
+                                    <option value="{{ k }}">{{ k }}</option>
                                     {% endfor %}
                                 </select>
                             </div>
@@ -33,7 +33,7 @@
                                 <div class="input-group-prepend">
                                     <label class="input-group-text" for="inputGroupSelect02">Subject:</label>
                                 </div>
-                                <select class="custom-select" id="inputGroupSelect02">
+                                <select name = "subject" class="custom-select" id="inputGroupSelect02">
                                     <option selected>Select subject</option>
                                     {% for k,v in subjects %}
                                     <option value="{{ v }}">{{ k }}</option>
